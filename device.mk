@@ -164,6 +164,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl
 
+# Power
+PRODUCT_PACKAGES += \
+    power.msm8952
+
 # Light
 PRODUCT_PACKAGES += \
     lights.msm8952 \

@@ -164,6 +164,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/display/calib.cfg:system/etc/calib.cfg \
+    $(LOCAL_PATH)/display/pp_calib_data_sharp_r63315_1080p_video_mode_dsi_panel.xml:system/etc/pp_calib_data_sharp_r63315_1080p_video_mode_dsi_panel.xml
+
 # Power
 PRODUCT_PACKAGES += \
     power.msm8952 \

@@ -245,7 +245,7 @@ PRODUCT_PACKAGES += \
 
 # FM radio
 PRODUCT_PACKAGES += \
-    FM2 \
+    FMRadio \
     libqcomfm_jni \
     qcom.fmradio \
     qcom.fmradio.xml

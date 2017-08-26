@@ -127,10 +127,18 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessing
 
 PRODUCT_PACKAGES += \
-    libOmxAacEnc \
-    libOmxQcelp13Enc \
-    libOmxEvrcEnc \
-    libOmxAmrEnc
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl \
+    android.hardware.soundtrigger@2.0-impl
+
+# DRM
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl
+
+# Bluetooth HAL
+PRODUCT_PACKAGES += \
+    libbt-vendor \
+    android.hardware.bluetooth@1.0-impl
 
 # Display
 PRODUCT_PACKAGES += \
@@ -139,11 +147,38 @@ PRODUCT_PACKAGES += \
     hdmi_cec.msm8952 \
     hwcomposer.msm8952 \
     memtrack.msm8952 \
-    liboverlay
+    liboverlay \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.allocator@2.0-service \
+    android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.memtrack@1.0-impl \
+    android.hardware.graphics.composer@2.1-impl
+
+# TV
+PRODUCT_PACKAGES += \
+    android.hardware.tv.input@1.0-impl \
+    android.hardware.tv.input@1.0-service \
+    android.hardware.tv.cec@1.0-impl
+
+PRODUCT_PACKAGES += \
+    tv_input.default
+
+# new gatekeeper HAL
+PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-impl
+
+# Keymaster HAL
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl
 
 # Light
 PRODUCT_PACKAGES += \
-    lights.msm8952
+    lights.msm8952 \
+    android.hardware.light@2.0-impl
+
+# GNSS HAL
+PRODUCT_PACKAGES += \
+    android.hardware.gnss@1.0-impl
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -162,6 +197,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/xiaomi/kenzo/configs/msm_irqbalance.conf:system/vendor/etc/msm_irqbalance.conf \
     device/xiaomi/kenzo/configs/msm_irqbalance_little_big.conf:system/vendor/etc/msm_irqbalance_little_big.conf
+
+# Health
+PRODUCT_PACKAGES += \
+    android.hardware.health@1.0-impl
 
 # Input
 PRODUCT_COPY_FILES += \
@@ -203,11 +242,20 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
+    android.hardware.sensors@1.0-impl \
     sensors.kenzo
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf \
     $(LOCAL_PATH)/configs/hals.conf:system/etc/sensors/hals.conf
+
+# USB HAL
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service
+
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-impl
 
 # wlan driver
 PRODUCT_PACKAGES += \
@@ -224,11 +272,14 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
 PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service \
     libqsap_sdk \
     libQWiFiSoftApCfg \
     libwpa_client \
     hostapd \
+    wlutil \
     wificond \
+    wifilogd \
     wpa_supplicant \
     wpa_supplicant.conf \
     hostapd_default.conf \
@@ -238,7 +289,10 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     Snap \
-    camera.msm8952
+    camera.msm8952 \
+    camera.device@1.0-impl \
+    camera.device@3.2-impl \
+    android.hardware.camera.provider@2.4-impl \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
@@ -250,18 +304,29 @@ PRODUCT_PACKAGES += \
     FMRadio \
     libqcomfm_jni \
     qcom.fmradio \
-    qcom.fmradio.xml
+    qcom.fmradio.xml \
+    android.hardware.broadcastradio@1.0-impl
 
 # Consumerir
 PRODUCT_PACKAGES += \
+    android.hardware.ir@1.0-impl \
     consumerir.msm8952
+
+# RenderScript HAL
+PRODUCT_PACKAGES += \
+    android.hardware.renderscript@1.0-impl
 
 # RIL
 PRODUCT_PACKAGES += \
+    android.hardware.radio@1.0-impl \
     libril_proxy \
     librmnetctl \
     libxml2 \
     Stk
+
+# HIDL
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/mbn_ota.txt:system/etc/mbn_ota.txt
@@ -308,6 +373,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=480
+
+# Default OMX service to non-Treble
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.media.treble_omx=false
 
 # setup dalvik vm and hwui configs.
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)

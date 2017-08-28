@@ -354,7 +354,6 @@ PRODUCT_PACKAGES += \
     libcurl \
     libnl_2 \
     libbson \
-    libcnefeatureconfig \
     libtinyxml
 
 # Libshims

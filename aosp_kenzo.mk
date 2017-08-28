@@ -18,12 +18,9 @@
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
-# Provide meaningful APN configuration
-PRODUCT_COPY_FILES := device/xiaomi/kenzo/configs/apns-full-conf.xml:system/etc/apns-conf.xml
-
-# Pixel style
-IS_ARM64 := true
-$(call inherit-product-if-exists, vendor/pixelstyle/prebuilt.mk)
+# Vendor
+TARGET_ARCH := arm64
+$(call inherit-product-if-exists, vendor/aosp/config.mk)
 
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)

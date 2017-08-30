@@ -181,7 +181,7 @@ function get-set-forall() {
     fi
 
     # Vibrator intensity (max - 3596, min - 116)
-    write /sys/class/timed_output/vibrator/vtg_level 1800
+    write /sys/class/timed_output/vibrator/vtg_level 2400
 
     # Set scheduler
     write /sys/block/mmcblk0/queue/scheduler noop
